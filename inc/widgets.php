@@ -112,6 +112,7 @@ class udpac_production_tickets_widget extends WP_Widget {
     // Creating widget front-end
 
     public function widget( $args, $instance ) {
+        echo $args['before_widget'];
         $title = apply_filters( 'widget_title', $instance['title'] );
         echo $args['before_title'] . $title . $args['after_title'];
         print_dates_array(make_dates_array($GLOBALS['post']->ID));
