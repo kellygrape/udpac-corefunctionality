@@ -27,6 +27,7 @@ define( 'UDPAC_DIR' , plugin_dir_path( __FILE__ ) );
 //require_once( UDPAC_DIR . '/inc/wordpress-cleanup.php' );
 require_once( UDPAC_DIR . '/inc/acf.php' );
 require_once( UDPAC_DIR . '/inc/cron.php' );
+require_once( UDPAC_DIR . '/inc/imagesizes.php' );
 require_once( UDPAC_DIR . '/inc/staff.php' );
 require_once( UDPAC_DIR . '/inc/beaverbuilder.php' );
 require_once( UDPAC_DIR . '/inc/widgets.php' );
