@@ -42,22 +42,56 @@ class udpac_summerstage_shows_widget extends WP_Widget {
     // Creating widget front-end
 
     public function widget( $args, $instance ) {
-        $title = apply_filters( 'widget_title', $instance['title'] );
-        if( have_rows('show_sponsors') ):
-        // before and after widget arguments are defined by themes
         echo $args['before_widget'];
-        if ( ! empty( $title ) )
-        echo $args['before_title'] . $title . $args['after_title'];
-          <?php // Create and run custom loop
-            $custom_posts = new WP_Query();
-            $custom_posts->query('post_type=production&posts_per_page=8');
-            while ($custom_posts->have_posts()) : $custom_posts->the_post();
-          ?>
-            <li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
-          <?php endwhile; ?>
-          <?php wp_reset_postdata();
-          echo $args['after_widget'];
+        $title = apply_filters( 'widget_title', $instance['title'] );
+        // before and after widget arguments are defined by themes
+        if ( ! empty( $title ) ) {
+            echo $args['before_title'] . $title . $args['after_title'];
+        }
+        
+        $shows = new WP_Query(array(
+            'post_type' => 'production',
+            'posts_per_page' => -1,
+            'meta_key' => 'closing_night',
+            'meta_compare' => '>=',
+            'meta_value' => date('Ymd'),
+            'orderby' => 'meta_value_num',
+            'order' => 'ASC'
+        ));
+
+        if($shows->have_posts()):
+            ?><div class="show-list"><?php
+            while($shows->have_posts()) : $shows->the_post();
+            ?> 
+            <style>
+            .show-list {
+                display: flex;
+                flex-wrap: wrap;
+            }
+            .show-list-item {
+                flex-basis: 30%;
+                margin: 10px;
+                flex: 1 1 30%;
+            }
+            </style>
+            <div class="show-list-item">
+                <a href="<?php the_permalink(); ?>">
+                <figure class="show-thumbnail">
+                    <?php the_post_thumbnail(); ?>
+                </figure>
+                <div class="show-info">
+                    <h3 class="show-name">
+                        <?php the_title(); ?>
+                    </h3>
+                    <p class="show-dates"></p>
+                </div>
+                </a>
+            </div><?php
+            endwhile;
+            ?></div><?php
         endif;
+        wp_reset_query();
+        echo $args['after_widget'];
     }
 
     // Widget Backend

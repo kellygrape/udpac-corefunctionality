@@ -31,3 +31,4 @@ require_once( UDPAC_DIR . '/inc/imagesizes.php' );
 require_once( UDPAC_DIR . '/inc/staff.php' );
 require_once( UDPAC_DIR . '/inc/beaverbuilder.php' );
 require_once( UDPAC_DIR . '/inc/widgets.php' );
+require_once( UDPAC_DIR . '/inc/summerstageshowslisting.php' );
