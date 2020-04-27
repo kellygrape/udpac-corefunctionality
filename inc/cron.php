@@ -68,6 +68,7 @@ function udpac_production_post_type() {
        'publicly_queryable'  => true,
        'rewrite'             => $rewrite,
        'capability_type'     => 'page',
+       'show_in_rest' => true,
     );
     register_post_type( 'production', $args );
 };

@@ -128,7 +128,8 @@ function udpacstaff_change_post_per_page( $params, $request ) {
 add_action('wp_enqueue_scripts', 'enqueue_stafflist_scripts');
 function enqueue_stafflist_scripts() {
   if(is_page_template('template-staffpage.php') || is_singular('production')){
-    wp_register_script( 'stafflist', UDPAC_DIR . '/inc/js/stafflist.js', array(), filemtime(UDPAC_DIR . '/inc/js/stafflist.js'));
+    wp_register_script( 'stafflist', plugin_dir_url( __FILE__ ) . 'js/stafflist.js', array(), 
+        filemtime(plugin_dir_url( __FILE__ ) . 'js/stafflist.js'));
     wp_enqueue_script( 'stafflist' );
   }
 }

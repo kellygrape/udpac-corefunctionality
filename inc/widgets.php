@@ -43,7 +43,10 @@ class udpac_production_sponsor_widget extends WP_Widget {
     // Creating widget front-end
 
     public function widget( $args, $instance ) {
-        $title = apply_filters( 'widget_title', $instance['title'] );
+        $title = '';
+        if(isset($instance['title'])) {
+            $title = apply_filters( 'widget_title', $instance['title'] );
+        }
         if( have_rows('show_sponsors') ):
         // before and after widget arguments are defined by themes
         echo $args['before_widget'];
